@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "lolinfos"
+version = "0.1.0"
+description = ""
+authors = ["GabrielTeodoroSan <gabrielteodorodomingues@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+bs4 = "^0.0.2"
+typer = {extras = ["all"], version = "^0.9.0"}
+user-agent = "^0.1.10"
+pydantic-settings = "^2.2.1"
+requests = "^2.31.0"
+
+
+[tool.poetry.group.dev.dependencies]
+blue = "^0.9.1"
+isort = "^5.13.2"
+taskipy = "^1.12.2"
+pytest = "^8.1.1"
+pytest-cov = "^4.1.0"
+factory-boy = "^3.3.0"
+
+
+[tool.taskipy.tasks]
+clear = 'blue .  &&  isort .'
+test  = 'pytest --cov=lolinfos/'
+run   = 'python lolinfos/main.py'
+
+[tool.isort]
+profile="black"
+src_paths=["tests", "lolinfos"]
+
+[tool.pytest.ini_options]
+markers = [
+    "cli: Tests to cli.",
+    "serial",
+]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
